@@ -56,7 +56,7 @@ parameters.BORDER_RADIUS = 0
 parameters.PADDING = "5px 20px 5px 5px"
 
 # Set up the title of the app
-st.title("CantoScribe v1")
+st.title("cscribe 2.1")
 
 user_input = st.text_area("Enter text here", value=st.session_state.get('user_input', ''), label_visibility='collapsed')
 
