@@ -17,7 +17,7 @@ with st.sidebar:
     # Look-up button for Wiktionary
     honzi = st.text_input("Add characters below, then press \"enter\"", "")
     if honzi:
-        url = f"https://en.wiktionary.org/wiki/{honzi}"
+        url = f"https://en.wiktionary.org/wiki/{honzi}#Chinese"
         link = f"[Look up {honzi} on Wiktionary]({url})"
         st.markdown(link, unsafe_allow_html=True)
     
