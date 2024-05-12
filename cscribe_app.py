@@ -20,6 +20,8 @@ with st.sidebar:
         url = f"https://en.wiktionary.org/wiki/{honzi}#Chinese"
         link = f"[Look up {honzi} on Wiktionary]({url})"
         st.markdown(link, unsafe_allow_html=True)
+
+    st.divider()
     
     st.header("Create vocabulary list:")
     # Initialize the vocabulary list in session state if it doesn't exist
