@@ -65,7 +65,7 @@ st.session_state['user_input'] = user_input
 
 # Correct pycantonese transliteration errors
 jp_adjustments = {
-    "呢"："ne1/ni1",
+    "呢":"ne1/ni1",
     "如果":"jyu4gwo2"
 }
 
