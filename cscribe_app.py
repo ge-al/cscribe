@@ -13,6 +13,15 @@ def clear_input():
 
 
 with st.sidebar:
+    st.header("Define term:")
+    # Look-up button for Wiktionary
+    honzi = st.text_input("Add characters below, then press \"enter\"", "")
+    if honzi:
+        url = f"https://en.wiktionary.org/wiki/{honzi}"
+        link = f"[Look up {honzi} on Wiktionary]({url})"
+        st.markdown(link, unsafe_allow_html=True)
+    
+    st.header("Create vocabulary list:")
     # Initialize the vocabulary list in session state if it doesn't exist
     if 'vocabulary' not in st.session_state:
         st.session_state['vocabulary'] = []
