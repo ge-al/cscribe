@@ -63,6 +63,12 @@ user_input = st.text_area("Enter text here", value=st.session_state.get('user_in
 # Update session state whenever the user types
 st.session_state['user_input'] = user_input
 
+# Correct pycantonese transliteration errors
+jp_adjustments = {
+    "呢"："ne1/ni1",
+    "如果":"jyu4gwo2"
+}
+
 
 if user_input:
     input_lines = user_input.split("\n")
@@ -72,6 +78,8 @@ if user_input:
         for hz, jp in score:
             if not jp:
                 output.append(hz)
+            elif hz in jp_adjustments:
+                output.append((jp_adjustments[hz], hz, "#FFFCFF"))
             else:
                 output.append((jp, hz, "#FFFCFF"))
         annotated_text(*output)
