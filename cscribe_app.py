@@ -19,11 +19,11 @@ with st.sidebar:
     if honzi:
         wiki_url = f"https://en.wiktionary.org/wiki/{honzi}#Chinese"
         wiki_link = f"[Look up {honzi} on Wiktionary]({wiki_url})"
-        st.markdown(link, unsafe_allow_html=True)
+        st.markdown(wiki_link, unsafe_allow_html=True)
 
         cantowords_url = f"https://cantowords.com/dictionary/{honzi}"
         cantowords_link = f"[Look up {honzi} on CantoWords]({cantowords_url})"
-        st.markdown(link, unsafe_allow_html=True)
+        st.markdown(cantowords_link, unsafe_allow_html=True)
 
     st.divider()
     
