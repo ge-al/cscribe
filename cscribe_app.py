@@ -2,6 +2,7 @@ import streamlit as st
 from annotated_text import annotated_text, parameters
 import pycantonese
 import pandas as pd
+import json
 
 st.set_page_config(layout="wide")
 
@@ -12,9 +13,16 @@ def clear_input():
     st.session_state['definition'] = ""
 
 
+def load_json(file_name):
+    with open(file_name, 'r', encoding='utf-8') as file:
+        return json.load(file)
+
+# Load csh_dict.json
+csh_dict = load_json("csh_dict.json")
+
 with st.sidebar:
     st.header("Define term:")
-    # Look-up button for Wiktionary
+    # Look-up web dictionaries
     honzi = st.text_input("Add characters below, then press \"enter\"", "")
     if honzi:
         wiki_url = f"https://en.wiktionary.org/wiki/{honzi}#Chinese"
@@ -25,6 +33,11 @@ with st.sidebar:
         cantowords_link = f"[Look up {honzi} on CantoWords]({cantowords_url})"
         st.markdown(cantowords_link, unsafe_allow_html=True)
 
+        if honzi in csh_dict:
+            sheik_url = csh_dict[honzi]["link"]
+            cantowords_link = f"[Look up {honzi} on CantoWords]({sheik_url})"
+            st.markdown(cantowords_link, unsafe_allow_html=True)
+        
     st.divider()
     
     st.header("Create vocabulary list:")
