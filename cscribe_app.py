@@ -95,10 +95,7 @@ user_input = st.text_area("Enter text here", value=st.session_state.get('user_in
 st.session_state['user_input'] = user_input
 
 # Correct pycantonese transliteration errors
-jp_adjustments = {
-    "呢":"ne1/ni1",
-    "如果":"jyu4gwo2"
-}
+jp_adjustments = load_json("jp_adjustments.json")
 
 
 if user_input:
