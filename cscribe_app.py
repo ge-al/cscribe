@@ -35,7 +35,7 @@ with st.sidebar:
 
         if honzi in csh_dict:
             sheik_url = csh_dict[honzi]["link"]
-            cantowords_link = f"[Look up {honzi} on CantoWords]({sheik_url})"
+            cantowords_link = f"[Look up {honzi} on Sheik]({sheik_url})"
             st.markdown(cantowords_link, unsafe_allow_html=True)
         
     st.divider()
