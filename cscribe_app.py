@@ -25,6 +25,12 @@ with st.sidebar:
     # Look-up web dictionaries
     honzi = st.text_input("Add characters below, then press \"enter\"", "")
     if honzi:
+
+        if honzi in csh_dict:
+            sheik_url = csh_dict[honzi]["link"]
+            cantowords_link = f"[Look up {honzi} on Sheik]({sheik_url})"
+            st.markdown(cantowords_link, unsafe_allow_html=True)
+
         wiki_url = f"https://en.wiktionary.org/wiki/{honzi}#Chinese"
         wiki_link = f"[Look up {honzi} on Wiktionary]({wiki_url})"
         st.markdown(wiki_link, unsafe_allow_html=True)
@@ -33,10 +39,7 @@ with st.sidebar:
         cantowords_link = f"[Look up {honzi} on CantoWords]({cantowords_url})"
         st.markdown(cantowords_link, unsafe_allow_html=True)
 
-        if honzi in csh_dict:
-            sheik_url = csh_dict[honzi]["link"]
-            cantowords_link = f"[Look up {honzi} on Sheik]({sheik_url})"
-            st.markdown(cantowords_link, unsafe_allow_html=True)
+
         
     st.divider()
     
