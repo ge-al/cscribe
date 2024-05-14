@@ -29,7 +29,7 @@ with st.sidebar:
         st.session_state['vocabulary'] = []
 
     # Input fields for term and definition using session state values to reset them
-    term = st.text_input("Input Term", value=st.session_state.get('term', ''))
+    term = st.text_input("Add Term", value=st.session_state.get('term', ''))
     definition = st.text_input("Add Your Definition", value=st.session_state.get('definition', ''))
 
     # Button to add the term and definition to the vocabulary list
