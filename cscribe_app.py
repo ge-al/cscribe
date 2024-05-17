@@ -3,6 +3,7 @@ from annotated_text import annotated_text, parameters
 import pycantonese
 import pandas as pd
 import json
+import re
 
 st.set_page_config(layout="wide")
 
@@ -17,10 +18,19 @@ def load_json(file_name):
     with open(file_name, 'r', encoding='utf-8') as file:
         return json.load(file)
 
+def separate_characters_and_jyutping(input_text):
+    # Extract Chinese characters
+    characters = ''.join(re.findall(r'[\u4e00-\u9fff]', input_text))
+    # Extract Jyutping
+    jyutping = ' '.join(re.findall(r'[a-zA-Z0-9]+', input_text))
+    return characters, jyutping
+
 # Load csh_dict.json
 csh_dict = load_json("csh_dict.json")
 
+
 with st.sidebar:
+    # ***Word lookup***
     st.header("Define term:")
     # Look-up web dictionaries
     honzi = st.text_input("Add characters below, then press \"enter\"", "")
@@ -38,11 +48,10 @@ with st.sidebar:
         cantowords_url = f"https://cantowords.com/dictionary/{honzi}"
         cantowords_link = f"[Look up {honzi} on CantoWords]({cantowords_url})"
         st.markdown(cantowords_link, unsafe_allow_html=True)
-
-
-        
-    st.divider()
     
+    st.divider()
+
+    # ***Vocabulary list***
     st.header("Create vocabulary list:")
     # Initialize the vocabulary list in session state if it doesn't exist
     if 'vocabulary' not in st.session_state:
@@ -71,6 +80,20 @@ with st.sidebar:
             st.session_state['show_filename_input'] = True  # Set the flag to show input field
         else:
             st.warning("No vocabulary to export.")
+    
+    st.divider()
+    # ***JP / HZ separate***
+    st.header("Separate hon3zi6 and jyutping")
+    separate_input = st.text_area("Enter text here for separation", key="separate_input")
+
+    if separate_input:
+        characters, jyutping = separate_characters_and_jyutping(separate_input)
+        st.write("Characters:")
+        st.write(characters)
+        st.write("Jyutping:")
+        st.write(jyutping)
+
+    
 
 # Show filename input and download button if flag is set
 if st.session_state.get('show_filename_input', False):
