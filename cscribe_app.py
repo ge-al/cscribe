@@ -84,11 +84,11 @@ with st.sidebar:
     st.divider()
     # ***JP / HZ separate***
     st.header("Separate hon3zi6 and jyutping")
-    separate_input = st.text_area("Enter text here for separation", key="separate_input")
+    separate_input = st.text_input("Paste text here for separation", key="separate_input")
 
     if separate_input:
         characters, jyutping = separate_characters_and_jyutping(separate_input)
-        st.write("Characters:")
+        st.write("Hon3zi6:")
         st.write(characters)
         st.write("Jyutping:")
         st.write(jyutping)
