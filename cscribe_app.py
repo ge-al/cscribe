@@ -93,6 +93,27 @@ with st.sidebar:
         st.write("Jyutping:")
         st.write(jyutping)
 
+    # ***Export Lesson***
+    st.header("Export Lesson")
+    if st.button("Export Lesson"):
+        lesson_data = {
+            "text": st.session_state.get('user_input', ''),
+            "vocab": st.session_state.get('vocabulary', [])
+        }
+        lesson_json = json.dumps(lesson_data, ensure_ascii=False, indent=4)
+        st.download_button(label="Download JSON", data=lesson_json, file_name="lesson.json", mime='application/json')
+
+    st.divider()
+
+    # ***Import Lesson***
+    st.header("Import Lesson")
+    uploaded_file = st.file_uploader("Choose a .json file", type="json")
+    if uploaded_file is not None:
+        lesson_data = json.load(uploaded_file)
+        st.session_state['user_input'] = lesson_data.get('text', '')
+        st.session_state['vocabulary'] = lesson_data.get('vocab', [])
+        st.success("Lesson imported successfully!")
+
     
 
 # Show filename input and download button if flag is set
