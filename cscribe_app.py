@@ -30,6 +30,13 @@ csh_dict = load_json("csh_dict.json")
 
 
 with st.sidebar:
+    
+    # ***YouTube Video Embed***
+    st.header("Embed YouTube Video")
+    youtube_url = st.text_input("Enter YouTube URL")
+    if youtube_url:
+        st.video(youtube_url)
+        
     # ***Word lookup***
     st.header("Define term:")
     # Look-up web dictionaries
@@ -93,6 +100,8 @@ with st.sidebar:
         st.write("Jyutping:")
         st.write(jyutping)
 
+    st.divider()
+    
     # ***Export Lesson***
     st.header("Export Lesson")
     if st.button("Export Lesson"):
