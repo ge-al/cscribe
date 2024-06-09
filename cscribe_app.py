@@ -36,7 +36,9 @@ with st.sidebar:
     youtube_url = st.text_input("Enter YouTube URL")
     if youtube_url:
         st.video(youtube_url)
-        
+
+    st.divider()
+    
     # ***Word lookup***
     st.header("Define term:")
     # Look-up web dictionaries
